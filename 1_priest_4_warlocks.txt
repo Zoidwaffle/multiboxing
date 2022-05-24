@@ -1,0 +1,334 @@
+//================================================================
+//
+// Instructions: Copy this entire script. Save it in a file. 
+// Load it into HotkeyNet.
+//
+// Toggle the scroll lock key to turn hotkeys off and on. (You 
+// can change this if you want, just like you can change 
+// everything else with HotkeyNet.) 
+//
+// Requires HotkeyNet build 147 or higher.
+// 
+// For more info, go to www.hotkeynet.com 
+//================================================================
+
+//-----------------------------------------------------------
+// SUBROUTINE TO LAUNCH AND RENAME A COPY OF WOW.
+//-----------------------------------------------------------
+<Command LaunchAndRename>
+   <SendPC %1%>
+      <Run "c:\%2%\%3%">
+      <RenameTargetWin %4%>
+      <RemoveWinFrame>
+      <SetForegroundWin>
+
+<Command ResizeAndPosition>
+  <SendPC Local>
+    <SendWinM %2%>
+      <SetWinRect 2960 0 480 360>
+    <SendWinM %3%>
+      <SetWinRect 2960 360 480 360>
+    <SendWinM %4%>
+      <SetWinRect 2960 720 480 360>
+    <SendWinM %5%>
+      <SetWinRect 2960 1080 480 360>
+    <SendWinM %1%>
+      <SetWinRect 0 0 2960 1440>
+      <SetForegroundWin>
+
+//-----------------------------------------------------------
+// HOTKEY TO LAUNCH AND RENAME WOW
+//-----------------------------------------------------------
+<Hotkey ScrollLockOn Ctrl L>
+  <LaunchAndRename Local wotlk_hd Wow.exe WoW1>
+  <LaunchAndRename Local wotlk_sd1 Wow.exe WoW2>
+  <LaunchAndRename Local wotlk_sd2 Wow.exe WoW3>
+  <LaunchAndRename Local wotlk_sd3 Wow.exe WoW4>
+  <LaunchAndRename Local wotlk_sd4 Wow.exe WoW5>
+  // Place all windows accordingly
+  <ResizeAndPosition WoW1 WoW2 WoW3 WoW4 WoW5>
+
+//<Hotkey ScrollLockOn Alt L>
+//  <Toggle>
+//    <ResizeAndPosition WoW1 WoW2 WoW3 WoW4>
+//  <Toggle>
+//    <ResizeAndPosition WoW2 WoW3 WoW4 WoW1>
+//  <Toggle>
+//    <ResizeAndPosition WoW3 WoW4 WoW1 WoW2>
+//  <Toggle>
+//    <ResizeAndPosition WoW4 WoW1 WoW2 WoW3>
+
+//-----------------------------------------------------------
+// DEFINE MAIL LABELS FOR SENDING KEY STROKES 
+//-----------------------------------------------------------
+<Label w1 Local SendWinM WoW1>
+<Label w2 Local SendWinM WoW2>
+<Label w3 Local SendWinM WoW3>
+<Label w4 Local SendWinM WoW4>
+<Label w5 Local SendWinM WoW5>
+
+//-----------------------------------------------------------
+// DEFINE HOTKEYS FOR ALL KEY COMBINATIONS THAT WILL GET
+// SENT TO ALL WOWS. ADD MORE KEY COMBO'S IF YOU WANT. 
+//-----------------------------------------------------------
+
+// The difference is because some letters are used for round-robin using shift
+<KeyList BasicKeys A-Z, 0-9, Plus, Minus, Numpad1, Numpad2, Numpad3, Numpad4, Numpad5, Numpad6, Numpad7, Numpad8, Numpad9, Numpad0, NumpadPlus, NumpadMinus, F1-F12, Backspace, Enter, Divide, Esc, except W, A, S, D, Q, E, F1-F5, G>
+<KeyList BasicKeysShift A-Z, 0-9, Plus, Minus, Numpad1, Numpad2, Numpad3, Numpad4, Numpad5, Numpad6, Numpad7, Numpad8, Numpad9, Numpad0, NumpadPlus, NumpadMinus, F1-F12, Backspace, Enter, Divide, Esc, except W, A, S, D, Q, E, R, F1-F5, 1-2, G>
+
+<Hotkey ScrollLockOn BasicKeys; ScrollLockOn Shift BasicKeysShift; ScrollLockOn LAlt BasicKeys>
+<SendLabel w1, w2, w3, w4, w5>
+<Key %Trigger%> 
+
+// Round robin keys
+<KeyList RoundRobinKeys Q, E> // send in minions / return minion / interact
+<KeyList RoundRobinKeys2 1, 2> // chain fear / howl of terror
+
+<Hotkey ScrollLockOn RoundRobinKeys; ScrollLockOn Shift RoundRobinKeys; ScrollLockOn LAlt RoundRobinKeys; ScrollLockOn Shift RoundRobinKeys2> //; ScrollLockOn Shift RoundRobinKeys; ScrollLockOn Shift RoundRobinKeys2; >
+  <Toggle>
+    <SendLabel w2>
+    <Key %Trigger%>
+  <Toggle>
+    <SendLabel w3>
+    <Key %Trigger%>
+  <Toggle>
+    <SendLabel w4>
+    <Key %Trigger%>
+  <Toggle>
+    <SendLabel w5>
+    <Key %Trigger%>
+
+// Reset toggle
+<Hotkey ScrollLockOn Shift R>
+  <ResetToggles>
+
+// Chain keypresses, totally against the EULA and always was
+<Hotkey ScrollLockOn G>
+  <SendLabel w1, w2, w3, w4, w5>
+  <Key r> // target focus target
+  <wait 100>
+  <Key g> // interact
+
+<KeyList RoundRobinKeys3 G> // interact
+<Hotkey ScrollLockOn Shift RoundRobinKeys3>
+  <Toggle>
+    <SendLabel w2>
+    <Key r> // target focus target
+    <wait 100>
+    <Key g> // interact
+  <Toggle>
+    <SendLabel w3>
+    <Key r> // target focus target
+    <wait 100>
+    <Key g> // interact
+  <Toggle>
+    <SendLabel w4>
+    <Key r> // target focus target
+    <wait 100>
+    <Key g> // interact
+  <Toggle>
+    <SendLabel w5>
+    <Key r> // target focus target
+    <wait 100>
+    <Key g> // interact
+
+//-----------------------------------------------------------
+// DEFINE MOVEMENT KEYS THAT WILL GET SENT TO ALL WOW'S.
+// ADD MORE KEYS IF YOU WANT. 
+//-----------------------------------------------------------
+<KeyList MovementKeys W, A, S, D, Space>
+
+<MovementHotkey ScrollLockOn MovementKeys>
+<SendLabel w1, w2, w3, w4, w5>
+<Key %Trigger%> 
+
+//----------------------------------------------------------------
+// DEFINE A MOVEMENT HOTKEY FOR FORMATION
+//----------------------------------------------------------------
+
+<MovementHotkey ScrollLockOn Shift A>
+  <If ActiveWinIs WoW1>
+    <SendLabel w2> <Key A>
+    <SendLabel w3> <Key A>
+    <SendLabel w4> <Key D>
+    <SendLabel w5> <Key D>
+  <Else If ActiveWinIs WoW2>
+    <SendLabel w1> <Key A>
+    <SendLabel w3> <Key A>
+    <SendLabel w4> <Key D>
+    <SendLabel w5> <Key D>
+  <Else If ActiveWinIs WoW3>
+    <SendLabel w1> <Key A>
+    <SendLabel w2> <Key A>
+    <SendLabel w4> <Key D>
+    <SendLabel w5> <Key D>
+  <Else If ActiveWinIs WoW4>
+    <SendLabel w1> <Key A>
+    <SendLabel w2> <Key A>
+    <SendLabel w3> <Key D>
+    <SendLabel w5> <Key D>
+  <Else If ActiveWinIs WoW5>
+    <SendLabel w1> <Key A>
+    <SendLabel w2> <Key A>
+    <SendLabel w3> <Key D>
+    <SendLabel w4> <Key D>
+
+<MovementHotkey ScrollLockOn Alt A>
+  <If ActiveWinIs WoW1>
+    <SendLabel w2> <Key A>
+    <SendLabel w4> <Key D>
+  <Else If ActiveWinIs WoW2>
+    <SendLabel w3> <Key A>
+    <SendLabel w4> <Key D>
+  <Else If ActiveWinIs WoW3>
+    <SendLabel w2> <Key A>
+    <SendLabel w4> <Key D>
+  <Else If ActiveWinIs WoW4>
+    <SendLabel w2> <Key A>
+    <SendLabel w3> <Key D>
+  <Else If ActiveWinIs WoW5>
+    <SendLabel w2> <Key A>
+    <SendLabel w3> <Key D>
+
+<MovementHotkey ScrollLockOn Shift D>
+  <If ActiveWinIs WoW1>
+    <SendLabel w2> <Key D>
+    <SendLabel w3> <Key D>
+    <SendLabel w4> <Key A>
+    <SendLabel w5> <Key A>
+  <Else If ActiveWinIs WoW2>
+    <SendLabel w1> <Key D>
+    <SendLabel w3> <Key D>
+    <SendLabel w4> <Key A>
+    <SendLabel w5> <Key A>
+  <Else If ActiveWinIs WoW3>
+    <SendLabel w1> <Key D>
+    <SendLabel w2> <Key D>
+    <SendLabel w4> <Key A>
+    <SendLabel w5> <Key A>
+  <Else If ActiveWinIs WoW4>
+    <SendLabel w1> <Key D>
+    <SendLabel w2> <Key D>
+    <SendLabel w3> <Key A>
+    <SendLabel w5> <Key A>
+  <Else If ActiveWinIs WoW5>
+    <SendLabel w1> <Key D>
+    <SendLabel w2> <Key D>
+    <SendLabel w3> <Key A>
+    <SendLabel w4> <Key A>
+
+<MovementHotkey ScrollLockOn Alt D>
+  <If ActiveWinIs WoW1>
+    <SendLabel w2> <Key D>
+    <SendLabel w4> <Key A>
+  <Else If ActiveWinIs WoW2>
+    <SendLabel w3> <Key D>
+    <SendLabel w4> <Key A>
+  <Else If ActiveWinIs WoW3>
+    <SendLabel w2> <Key D>
+    <SendLabel w4> <Key A>
+  <Else If ActiveWinIs WoW4>
+    <SendLabel w2> <Key D>
+    <SendLabel w3> <Key A>
+  <Else If ActiveWinIs WoW5>
+    <SendLabel w2> <Key D>
+    <SendLabel w3> <Key A>
+
+<MovementHotkey ScrollLockOn Shift W, S>
+   <If ActiveWinIs WoW1>
+      <SendLabel w2> <Key %Trigger%>
+      <SendLabel w3> <Key %Trigger%>
+      <SendLabel w4> <Key %Trigger%>
+      <SendLabel w5> <Key %Trigger%>
+   <Else If ActiveWinIs WoW2>
+      <SendLabel w1> <Key %Trigger%>
+      <SendLabel w3> <Key %Trigger%>
+      <SendLabel w4> <Key %Trigger%>
+      <SendLabel w5> <Key %Trigger%>
+   <Else If ActiveWinIs WoW3>
+      <SendLabel w1> <Key %Trigger%>
+      <SendLabel w2> <Key %Trigger%>
+      <SendLabel w4> <Key %Trigger%>
+      <SendLabel w5> <Key %Trigger%>
+   <Else If ActiveWinIs WoW4>
+      <SendLabel w1> <Key %Trigger%>
+      <SendLabel w2> <Key %Trigger%>
+      <SendLabel w3> <Key %Trigger%>
+      <SendLabel w5> <Key %Trigger%>
+   <Else If ActiveWinIs WoW5>
+      <SendLabel w1> <Key %Trigger%>
+      <SendLabel w2> <Key %Trigger%>
+      <SendLabel w3> <Key %Trigger%>
+      <SendLabel w4> <Key %Trigger%>
+
+<MovementHotkey ScrollLockOn Alt W, S>
+   <If ActiveWinIs WoW1>
+      <SendLabel w2> <Key %Trigger%>
+      <SendLabel w4> <Key %Trigger%>
+   <Else If ActiveWinIs WoW2>
+      <SendLabel w3> <Key %Trigger%>
+      <SendLabel w4> <Key %Trigger%>
+   <Else If ActiveWinIs WoW3>
+      <SendLabel w2> <Key %Trigger%>
+      <SendLabel w4> <Key %Trigger%>
+   <Else If ActiveWinIs WoW4>
+      <SendLabel w2> <Key %Trigger%>
+      <SendLabel w3> <Key %Trigger%>
+   <Else If ActiveWinIs WoW5>
+      <SendLabel w2> <Key %Trigger%>
+      <SendLabel w3> <Key %Trigger%>
+
+//-----------------------------------------------------------
+// BROADCAST MOUSE CLICKS.
+//-----------------------------------------------------------
+//<Hotkey ScrollLockOn LButton>
+//<If MouseIsOverWindowRect WoW1 35 218 60 70>
+//<SendLabel w2, w3, w4>
+//        <Key 5>
+//<If MouseIsOverWindowRect WoW1 35 298 60 70>
+//<SendLabel w2, w3, w4>
+//        <Key 6>
+//<If MouseIsOverWindowRect WoW1 35 298 60 70>
+//<If MouseIsOverWindowRect WoW6 545 738 144 54>
+//<SendLabel w2, w3, w4>
+//        <Key 7>
+
+//-----------------------------------------------------------
+// BROADCAST MOUSE CLICKS.
+//-----------------------------------------------------------
+
+//<UseKeyAsModifier Oem3>
+<UseKeyAsModifier Oem102>
+<Hotkey ScrollLockOn Oem102 LButton, MButton, RButton, Button4, Button5>
+   <SendLabel w1, w2, w3, w4, w5> 
+      <ClickMouse %TriggerMainKey%>
+
+//-----------------------------------------------------------
+// Pressing F1-4 will change the main window and trigger a macro that changes focus
+//-----------------------------------------------------------
+
+<Hotkey ScrollLockOn F1>
+    <ResizeAndPosition WoW1 WoW2 WoW3 WoW4 WoW5>
+    <SendLabel w1, w2, w3, w4, w5>
+    <Key %Trigger%>
+    <SendFocusWin>
+<Hotkey ScrollLockOn F2>
+    <ResizeAndPosition WoW2 WoW1 WoW3 WoW4 WoW5>
+    <SendLabel w1, w2, w3, w4, w5>
+    <Key %Trigger%> 
+    <SendFocusWin>
+<Hotkey ScrollLockOn F3>
+    <ResizeAndPosition WoW3 WoW2 WoW1 WoW4 WoW5>
+    <SendLabel w1, w2, w3, w4, w5>
+    <Key %Trigger%> 
+    <SendFocusWin>
+<Hotkey ScrollLockOn F4>
+    <ResizeAndPosition WoW4 WoW2 WoW3 WoW1 WoW5>
+    <SendLabel w1, w2, w3, w4, w5>
+    <Key %Trigger%> 
+    <SendFocusWin>
+<Hotkey ScrollLockOn F5>
+    <ResizeAndPosition WoW5 WoW2 WoW3 WoW4 WoW1>
+    <SendLabel w1, w2, w3, w4, w5>
+    <Key %Trigger%> 
+    <SendFocusWin>
