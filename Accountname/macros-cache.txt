@@ -1,0 +1,108 @@
+MACRO 7 "Accept" Ability_Creature_Disease_03
+/script SelectGossipAvailableQuest(1)
+/script CompleteQuest()
+/script GetQuestReward()
+/script SelectGossipOption(1)
+/script AcceptQuest()
+END
+MACRO 8 "Assist" Spell_Shaman_SpiritLink
+/assist focus
+END
+MACRO 13 "Focus1" INV_Misc_QuestionMark
+/tar Dumbledorf
+/tar Blossom
+/tar Lokka
+/focus 
+END
+MACRO 14 "Focus2" INV_Misc_QuestionMark
+/tar Gnominie
+/tar Hnoss
+/tar Driftar
+/focus 
+END
+MACRO 15 "Focus3" INV_Misc_QuestionMark
+/tar Gnomercy
+/tar Strawberry
+/tar Gurn
+/focus
+END
+MACRO 16 "Focus4" INV_Misc_QuestionMark
+/tar Styrognome
+/tar Moss
+/tar Zugzuggar
+/focus
+END
+MACRO 17 "Focus5" INV_Misc_QuestionMark
+/tar Dora
+/tar Snowshoe
+/tar Belka
+/focus
+END
+MACRO 9 "Follow" Spell_DeathKnight_ArmyOfTheDead
+/follow focus
+/script SetView(5); SetView(4)
+END
+MACRO 1 "GFX1" INV_Misc_QuestionMark
+/console farclip 1600
+/console horizonFarclipScale 6
+/console skycloudlod 3
+/console waterDetail 3
+/console reflectionMode 3
+/console rippleDetail 2
+/console shadowmode 3
+/console shadowtexturesize 2048
+/console particleDensity 100
+END
+MACRO 10 "GFX2" INV_Misc_QuestionMark
+/console environmentDetail 150
+/console groundEffectDensity 256
+/console groundEffectDist 600
+/console groundEffectFade 1277
+/console spellEffectLevel 200
+/console ffxGlow 1
+/console ffxspecial 1
+/console ffxnetherworld 1
+/console ffxDeath 1
+END
+MACRO 11 "GFX3" INV_Misc_QuestionMark
+/console sunshafts 2
+/console textureFilteringMode 5
+/console componentTextureLevel 0
+/console terrainMipLevel 0
+/console ssao 2
+/console ssaoblur 2
+/console weatherDensity 3
+/console gxmultiesample 8
+/console violencelevel 5
+END
+MACRO 2 "Invite" Ability_Creature_Cursed_02
+/inv Dumbledorf
+/inv Gnominie
+/inv Gnomercy
+/inv Styrognome
+/inv Dora
+/use Snowshoe Rabbit
+END
+MACRO 4 "PetAttack" Ability_Creature_Poison_01
+#showtooltip
+/assist focus
+/6 >> PET ATTACK <<
+/cast Demonic Empowerment
+/petattack
+END
+MACRO 3 "PetFollow" Ability_Creature_Disease_02
+#showtooltip
+/petfollow
+END
+MACRO 19 "Salute" Spell_unused2
+/salute focus
+END
+MACRO 20 "Train" Spell_Shaman_StaticShock
+/follow Dumbledorf
+END
+MACRO 18 "Trinket1" INV_Misc_QuestionMark
+/use 13
+END
+MACRO 12 "Uninvite" Ability_Ambush
+/script LeaveParty()
+END

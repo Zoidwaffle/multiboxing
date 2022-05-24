@@ -1,0 +1,87 @@
+MACRO 16777234 "Buff" INV_Misc_QuestionMark
+#showtooltip
+/castsequence  reset=10 Demon Armor, Unending Breath
+END
+MACRO 16777222 "DoT1" INV_Misc_QuestionMark
+#showtooltip
+/assist focus
+/castsequence reset=combat/target/10 Corruption, Curse of Agony
+END
+MACRO 16777231 "DoT2" INV_Misc_QuestionMark
+#showtooltip
+/assist focus
+/castsequence reset=combat/10 Curse of the Elements, Corruption
+END
+MACRO 16777225 "Drain Life" INV_Misc_QuestionMark
+#showtooltip
+/assist focus
+/cast [nochanneling:drain life] drain life
+END
+MACRO 16777229 "Drain Mana" INV_Misc_QuestionMark
+#showtooltip
+/assist focus
+/cast [nochanneling:drain mana] drain mana
+END
+MACRO 16777221 "Drain Soul" INV_Misc_QuestionMark
+#showtooltip Drain Soul
+/assist focus
+/cast  [nochanneling:drain soul] Drain Soul
+END
+MACRO 16777227 "Dynamite" INV_Misc_QuestionMark
+/use [@target] Rough Dynamite
+END
+MACRO 16777224 "Fear" INV_Misc_QuestionMark
+#showtooltip
+/assist focus
+/cast Fear
+END
+MACRO 16777230 "Hellfire" INV_Misc_QuestionMark
+#showtooltip
+/cast Hellfire
+END
+MACRO 16777237 "Immolate" INV_Misc_QuestionMark
+#showtooltip
+/assist focus
+/castsequence [form:2] reset=6  Demon Charge(Demon); Immolate
+END
+MACRO 16777220 "Life Tap" INV_Misc_QuestionMark
+#showtooltip
+/cast Life Tap
+END
+MACRO 16777235 "Meta" INV_Misc_QuestionMark
+#showtooltip
+/castsequence [form:2] reset=45/Combat Immolation Aura(Demon); Metamorphosis;
+END
+MACRO 16777228 "Rain of Fire" INV_Misc_QuestionMark
+#showtooltip
+/cast Rain of Fire
+END
+MACRO 16777219 "Shadowbolt" INV_Misc_QuestionMark
+#showtooltip
+/assist focus
+/cast Shadow Bolt
+END
+MACRO 16777233 "Soul Fire" INV_Misc_QuestionMark
+#showtooltip
+/assist focus
+/cast Soul Fire
+END
+MACRO 16777226 "Soul Stone" INV_Misc_QuestionMark
+#showtooltip Create Soulstone
+/assist focus
+/use Lesser Soulstone
+/cast Create Soulstone
+END
+MACRO 16777232 "Spellstone" INV_Misc_QuestionMark
+#showtooltip Create Spellstone
+/console Sound_EnableSFX 0
+/use Greater Spellstone
+/use 16
+/click StaticPopup1Button1
+/console Sound_EnableSFX 1
+/cast Create Spellstone
+END
+MACRO 16777223 "Wand" INV_Misc_QuestionMark
+/assist focus
+/castsequence [form:2] reset=6  Shadow Cleave(Demon); shoot
+END
